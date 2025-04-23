@@ -1,6 +1,7 @@
 package com.example.stu.Accounts.Models;
 
 import com.example.stu.Core.GenerateUid;
+import com.example.stu.Core.Models.BaseEntity;
 import com.example.stu.Core.Utils.HashUtility;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Table("users")
-public class User {
+public class User extends BaseEntity {
     @PrimaryKey
     private UUID uid = GenerateUid.generate();
     private String gmail;

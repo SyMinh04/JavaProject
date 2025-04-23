@@ -84,7 +84,7 @@ public class UserService extends BaseService<User, UUID, UserRepository> {
             return LoginResponse.builder()
                     .userId(user.getUid())
                     .username(username)
-                    .token(newAccessToken)
+                    .accessToken(newAccessToken)
                     .refreshToken(newRefreshToken)
                     .role(user.getUserType())
                     .expiresIn(jwtUtility.getAccessTokenExpirationTime())

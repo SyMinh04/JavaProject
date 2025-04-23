@@ -16,7 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -30,16 +32,14 @@ public class UserController extends BaseController<User, UUID, UserService> {
         this.userMapper = userMapper;
         this.messageUtils = messageUtils;
     }
-    
-//    @Override
-//    @GetMapping
-//    public ResponseEntity<ApiResponse<List<UserResponse>>> getAll() {
-//        List<User> users = service.findAll();
-//        List<UserResponse> responses = users.stream()
-//                .map(user -> userMapper.toResponse(user, UserResponse.class))
-//                .collect(Collectors.toList());
-//        return ResponseEntity.ok(ApiResponse.success(responses, messageUtils.getMessage("users.retrieved.success")));
-//    }
+    @GetMapping("/all")
+    public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
+        List<User> users = service.findAll();
+        List<UserResponse> responses = users.stream()
+                .map(user -> userMapper.toResponse(user, UserResponse.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(ApiResponse.success(responses, messageUtils.getMessage("users.retrieved.success")));
+    }
 //
 //    @Override
 //    @GetMapping("/{id}")
