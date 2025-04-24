@@ -8,5 +8,4 @@ import lombok.EqualsAndHashCode;
 public class UpdateUserRequest extends CreateUserRequest{
     private String gmail;
     private String password;
-    private String userType;
 }

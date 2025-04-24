@@ -1,5 +1,6 @@
 package com.example.stu.Accounts.Models;
 
+import com.example.stu.Core.Enums.UserType;
 import com.example.stu.Core.GenerateUid;
 import com.example.stu.Core.Models.BaseEntity;
 import com.example.stu.Core.Utils.HashUtility;
@@ -21,10 +22,11 @@ public class User extends BaseEntity {
     private UUID uid = GenerateUid.generate();
     private String gmail;
     private String password;
-    @Column("user_type")
-    private String userType;
 
-
+    public String getUserType()
+    {
+        return UserType.USER.name().toLowerCase();
+    }
     public void makePassword(String plainPassword) {
         this.password = HashUtility.hashData(plainPassword);
     }

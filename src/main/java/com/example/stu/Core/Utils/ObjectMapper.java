@@ -5,6 +5,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -44,6 +45,26 @@ public class ObjectMapper {
         } catch (Exception e) {
             throw new RuntimeException("Error mapping object to " + targetClass.getName(), e);
         }
+    }
+    
+    /**
+     * Creates a new instance of the target class and maps properties from source object,
+     * converting property names to snake_case
+     * @param source Source object
+     * @param targetClass Target class
+     * @return New instance of target class with properties mapped from source in snake_case format
+     */
+    public static <T> T mapToSnakeCase(Object source, Class<T> targetClass) {
+        return SnakeCaseResponseWrapper.wrapToSnakeCase(source, targetClass);
+    }
+    
+    /**
+     * Converts an object to a Map with snake_case keys
+     * @param source Source object
+     * @return Map with snake_case keys and corresponding values
+     */
+    public static Map<String, Object> toSnakeCaseMap(Object source) {
+        return SnakeCaseResponseWrapper.toSnakeCaseMap(source);
     }
 
     /**

@@ -8,10 +8,10 @@ import com.example.stu.Accounts.Serializers.Requests.LoginRequest;
 import com.example.stu.Accounts.Serializers.Requests.RefreshTokenRequest;
 import com.example.stu.Accounts.Serializers.Requests.UpdateUserRequest;
 import com.example.stu.Accounts.Serializers.Responses.LoginResponse;
-import com.example.stu.Core.Exception.ResourceNotFoundException;
+import com.example.stu.Core.Exceptions.ResourceNotFoundException;
 import com.example.stu.Core.Exceptions.UnauthorizedException;
 import com.example.stu.Core.Service.BaseService;
-import com.example.stu.Core.Utils.JwtUtility;
+import com.example.stu.Core.Auth.JwtUtility;
 import com.example.stu.Core.Utils.MessageUtils;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +42,7 @@ public class UserService extends BaseService<User, UUID, UserRepository> {
                 .orElseThrow(() -> new ResourceNotFoundException(messageUtils.getMessage("user.not.found")));
         
         if (!user.comparePassword(request.getPassword())) {
-            throw new UnauthorizedException(messageUtils.getMessage("user.invalid.credentials"));
+            throw new UnauthorizedException(messageUtils.getMessage("password_is_not_correct"));
         }
         
         String accessToken = jwtUtility.getAccessToken(user.getGmail(), user.getUid(), user.getUserType());
@@ -93,9 +93,5 @@ public class UserService extends BaseService<User, UUID, UserRepository> {
             throw new UnauthorizedException(messageUtils.getMessage("user.invalid.credentials"));
         }
     }
-    
-    @Override
-    protected String getEntityName() {
-        return "User";
-    }
+
 }

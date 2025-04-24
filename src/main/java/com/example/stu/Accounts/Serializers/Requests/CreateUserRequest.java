@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class CreateUserRequest {
     private String gmail;
     private String password;
-    private String userType;
 }

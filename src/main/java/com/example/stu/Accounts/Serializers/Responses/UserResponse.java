@@ -12,6 +12,5 @@ import java.util.UUID;
 public class UserResponse {
     private UUID uid;
     private String gmail;
-    private String userType;
-    // Note: We don't include password in the response for security reasons
+    private String user_type;
 }

@@ -1,6 +1,6 @@
 package com.example.stu.Core.Service;
 
-import com.example.stu.Core.Exception.ResourceNotFoundException;
+import com.example.stu.Core.Exceptions.ResourceNotFoundException;
 import com.example.stu.Core.Models.ISoftDeleteAware;
 import org.springframework.data.repository.CrudRepository;
 

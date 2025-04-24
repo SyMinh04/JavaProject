@@ -35,6 +35,6 @@ public class GenericEntityMapper<E, C, U> implements EntityMapper<E, C, U> {
     
     @Override
     public <R> R toResponse(E entity, Class<R> responseClass) {
-        return ObjectMapper.map(entity, responseClass);
+        return ObjectMapper.mapToSnakeCase(entity, responseClass);
     }
 }
